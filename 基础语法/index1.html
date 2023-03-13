@@ -7,15 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    
     <div id="app">
-        {{msg}} 
+        {{msg}} {{1+1}} {{hello()}}
         <br/>
         <span v-html="msg"></span>
         <!--v-html对文本字符进行转义-->
         <br/>
         <span v-text="msg"></span>
         <!--v-text显示原本的text内容-->
+
     </div>
 
     <script src="../node_modules/vue/dist/vue.js"></script>
@@ -24,10 +24,15 @@
         new Vue({
             el:"#app",
             data:{
-                msg:"<h1>Hello</h1>"
-            }
+                msg:"<h1>Hello</h1>",
+                link:"www.baidu.com"
+            },
+            methods: {
+                hello(){
+                    return "World"
+                }
+            },
         })
     </script>
-
 </body>
 </html>
