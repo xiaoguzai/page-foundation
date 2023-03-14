@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+        <!--事件中直接写js片段-->
+        <button v-on:click="num++">点赞</button>
+        <!--事件中指定一个回调函数，必须是vuew实例中定义的函数-->
+        <button v-on:click="cancle">取消</button>
+        <!--可以简写成@:click-->
+        <hi>有{{num}}个赞</hi>
+
+        <!--事件修饰符-->
+        <div style="border: 1px solid red;padding: 20px;" v-on:click.once="hello">
+            <!--once点一次弹窗，再点就不弹窗了-->
+            大div
+            <div style="border: 1px solid blue;padding: 20px;" @click.stop="hello">
+                小div
+                <!--由于事件冒泡，@click的时候点了小的div相当于点了大的div-->
+                <!--此时我们使用@click.stop防止事件冒泡，点小的div不会影响到大的div-->
+                <a href="http://www.baidu.com" @click.prevent.stop="hello">去百度</a>
+                <!--采用prevent阻止它跳转，点击完成之后继续让他弹窗-->
+                <!--加上.stop同时阻止冒泡-->
+            </div>
+        </div>
+
+        <!--按键修饰符，这里v-on采用键码的方式，vue中抽取出了常用的keyup-->
+        <!--按上键的时候，需要将光标定位到文本框，鼠标点击到该位置之后ctrl+单击-->
+        <input type="text" v-model="num" v-on:keyup.up="num+=2" @keyup.down="num-=2" @click.ctrl="num=10"><br />
+
+        提示：
+
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <!--这种情况下点大的div会弹出一次，而小的div会弹出两次-->
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                num:1
+            },
+            methods: {
+                cancle(){
+                    this.num--;
+                },            
+                hello(){
+                    alert("点击了")
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
