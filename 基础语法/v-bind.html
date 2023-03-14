@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!--给html标签的属性绑定-->
+    <div id="app">
+        <a v-bind:href="link">gogogo</a>
+
+        <!--class,style-->
+        <div v-bind:class="{active:isActive,'text-danger':hasError}"
+        v-bind:style="{color:color1,fontSize:size}">你好</div>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+
+    <!-- el: '#app' 的意思就是告诉Vue挂载id为app的域下可以解析所有关于Vue的数据。用于指明 Vue 实例的挂载目标。-->
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                link:"https://www.baidu.com",
+                isActive:true,
+                hasError:true,
+                color1:'red',
+                size:'100px'
+            }
+        })
+    </script>
+
+</body>
+</html>
